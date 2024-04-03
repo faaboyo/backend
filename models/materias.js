@@ -1,10 +1,8 @@
 "use strict";
 
-const { QueryTypes } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  const profesor = sequelize.define(
-    "profesor",
+  const materias = sequelize.define(
+    "materias",
     {
       id: {
         allowNull: false,
@@ -16,32 +14,38 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      semestre: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
+      profesor: {
+        type: DataTypes.STRING(50), // Definir el tipo de datos para el profesor
+        allowNull: false, // Indicar que no puede ser nulo
+      },
+      carrera: {
+        type: DataTypes.STRING(50), // Definir el tipo de datos para la carrera
+        allowNull: false, // Indicar que no puede ser nulo
+      }
     },
     {
       timestamps: false,
-      tableName: "profesores",
+      tableName: "materias",
     }
   );
 
-  profesor.getProfesores = async (params) => {
-    
-    const query = ``;
+  materias.getProfesores = async (params) => {
+    const query = ``; // Aquí deberías definir la consulta SQL para obtener los profesores
     return await sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
   };
 
-  profesor.associate = function (models) {
-    // profesor.hasMany(models.materias, {
-    //   foreignKey: "fk_materia",
-    //   as: "materias",
-    // });
+  materias.associate = function (models) {
+    materias.belongsTo(models.profesor, { // Corregimos la asociación entre materias y profesores
+      foreignKey: "fk_materias", // Aquí deberías definir la clave externa correcta
+      as: "materias", // Nombre de la relación
+    });
   };
 
-  return profesor;
+  return materias; // Corregimos el retorno del modelo
 };
-
