@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const Eventos = sequelize.define(
-    "Eventos",
+  const evento = sequelize.define(
+    "evento",
     {
       id: {
         allowNull: false,
@@ -10,27 +10,33 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      titulo: {
+      nombre: { // Cambiado de firstName a nombre
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      URL: {
+      descripcion: { // Cambiado de lastName a descripcion
         allowNull: false,
         type: DataTypes.TEXT,
       },
+      precio: { // Cambiado de email a precio
+        allowNull: false,
+        type: DataTypes.FLOAT,
+      },
     },
     {
-      timestamps: false,
+      timestamps: true,
       tableName: "eventos",
     }
   );
 
-  Eventos.associate = function (models) {
-    Eventos.belongsTo(models.ProductosServicios, {
-      foreignKey: "fk_productos_servicios",
-      as: "productos_servicios",
-    });
-  };
 
-  return Eventos;
+
+  return evento;
 };
+
+
+
+
+
+
+

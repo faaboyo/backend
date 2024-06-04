@@ -25,12 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Proveedores.associate = function (models) {
-    Proveedores.hasMany(models.ProductosServicios, {
-      foreignKey: "fk_proveedores",
-      as: "productos_servicios",
-    });
-  };
 
   return Proveedores;
 };

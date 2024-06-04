@@ -25,19 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Reservas.getProductosServicios = async (params) => {
-    const query = ``; // Aquí deberías definir la consulta SQL para obtener las secciones
-    return await sequelize.query(query, {
-      type: sequelize.QueryTypes.SELECT,
-    });
-  };
 
-  Reservas.associate = function (models) {
-    Reservas.belongsTo(models.ProductosServicios, {
-      foreignKey: "fk_productos_servicios",
-      as: "productos_servicios",
-    });
-  };
 
   return Reservas;
 };

@@ -1,18 +1,22 @@
-const Users = require("../models").user;
+"use strict";
+
+const User = require("../models").user;
 
 class UserService {
   static async getUsers(params) {
-    return await Users.findAll(params);
+    return await User.findAll(params);
   }
 
   static async getUser(id) {
-    return await Users.findOne({ where: { id } });
+    return await User.findOne({ where: { id } });
   }
 
   static async createUser(user) {
-    return await Users.create({
-      nombre: user.nombre,
-      biografia: user.biografia,
+    console.log(user)
+    return await User.create({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   }
 
@@ -22,8 +26,9 @@ class UserService {
     if (!instance) return null;
 
     return instance.update({
-      nombre: user.nombre,
-      biografia: user.biografia
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
     });
   }
 

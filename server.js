@@ -9,7 +9,7 @@ class Server {
   constructor() {
     this.init();
     this.app = express();
-    this.port = process.env.PORT || 3001;
+    this.port = process.env.PORT || 3002;
     this.host = process.env.HOST || 'localhost';
     this.middlewares();
     this.routes();

@@ -6,6 +6,6 @@ module.exports = {
     password: process.env.CENTRAL_DB_PASS,
     database: process.env.CENTRAL_DB_NAME,
     host: process.env.CENTRAL_DB_HOST,
-    dialect: process.env.CENTRAL_DB_DIALECT
+    dialect: 'postgres'
   },
 };

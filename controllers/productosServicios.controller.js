@@ -1,4 +1,4 @@
-const ProductosServiciosService = require("../services/productos_servicios.services");
+const ProductosServiciosService = require("../services/productosServicios.services");
 const asyncHandler = require("../middlewares/async-handler");
 const http = require("../helpers/http");
 

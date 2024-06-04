@@ -12,9 +12,9 @@ module.exports = {
       nombre: {
         type: Sequelize.STRING
       },
-      biografia: {
-        type: Sequelize.STRING
-      }
+      descripcion: {
+        type: Sequelize.TEXT
+      },
     });
   },
   async down(queryInterface, Sequelize) {

@@ -1,8 +1,7 @@
-"use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const ProductosServicios = sequelize.define(
-    "ProductosServicios",
+  const productoservicio = sequelize.define(
+  "productoservicio",
     {
       id: {
         allowNull: false,
@@ -10,31 +9,26 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      nombre: {
+      nombre: { // Cambiado de firstName a nombre
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      apellido: {
+      descripcion: { // Cambiado de lastName a descripcion
         allowNull: false,
         type: DataTypes.TEXT,
       },
-      ci: {
+      precio: { // Cambiado de email a precio
         allowNull: false,
-        type: DataTypes.TEXT,
+        type: DataTypes.FLOAT,
       },
     },
     {
-      timestamps: false,
-      tableName: "productos_servicios",
+      timestamps: true,
+      tableName: "productoservicio",
     }
   );
 
-  ProductosServicios.associate = function (models) {
-    ProductosServicios.belongsTo(models.Proveedores, {
-      foreignKey: "fk_proveedores",
-      as: "proveedores",
-    });
-  };
 
-  return ProductosServicios;
+
+  return productoservicio;
 };

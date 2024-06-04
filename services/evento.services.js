@@ -1,4 +1,7 @@
+"use strict";
+
 const Evento = require("../models").evento;
+
 
 class EventoService {
   static async getEventos(params) {
@@ -8,11 +11,14 @@ class EventoService {
   static async getEvento(id) {
     return await Evento.findOne({ where: { id } });
   }
+  
 
   static async createEvento(evento) {
+    console.log(evento)
     return await Evento.create({
       nombre: evento.nombre,
-      descripcion: evento.descripcion, // Asumiendo que hay un campo de descripción para eventos
+      descripcion: evento.descripcion,
+      precio: evento.precio
     });
   }
 
@@ -24,6 +30,7 @@ class EventoService {
     return instance.update({
       nombre: evento.nombre,
       descripcion: evento.descripcion,
+      precio: evento.precio
     });
   }
 
@@ -34,8 +41,9 @@ class EventoService {
 
     await instance.destroy();
   }
+
+ 
+
 }
-
+console.log(EventoService);
 module.exports = EventoService;
-
-
