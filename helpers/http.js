@@ -1,3 +1,4 @@
+
 const response200 = (res, data = {}, message = "Operación exitosa") => {
 
   return res.status(200).json({

@@ -1,34 +1,34 @@
-const Profesor = require("../models").profesor;
+const Users = require("../models").user;
 
-class ProfesorService {
-  static async getProfesores(params) {
-    return await Profesor.findAll(params);
+class UserService {
+  static async getUsers(params) {
+    return await Users.findAll(params);
   }
 
-  static async getProfesor(id) {
-    return await Profesor.findOne({ where: { id } });
+  static async getUser(id) {
+    return await Users.findOne({ where: { id } });
   }
 
-  static async createProfesor(profesor) {
-    return await Profesor.create({
-      nombre: profesor.nombre,
-      biografia: profesor.biografia,
+  static async createUser(user) {
+    return await Users.create({
+      nombre: user.nombre,
+      biografia: user.biografia,
     });
   }
 
-  static async updateProfesor(profesor) {
-    const instance = await this.getProfesor(profesor.id);
+  static async updateUser(user) {
+    const instance = await this.getUser(user.id);
 
     if (!instance) return null;
 
     return instance.update({
-      nombre: users.nombre,
-      biografia: users.biografia
+      nombre: user.nombre,
+      biografia: user.biografia
     });
   }
 
-  static async deleteProfesor(id) {
-    const instance = await this.getProfesor(id);
+  static async deleteUser(id) {
+    const instance = await this.getUser(id);
 
     if (!instance) return;
 
@@ -36,4 +36,4 @@ class ProfesorService {
   }
 }
 
-module.exports = ProfesorService;
+module.exports = UserService;

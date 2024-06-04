@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('profesores', {
+    await queryInterface.createTable('ProductosServicios', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,10 +14,10 @@ module.exports = {
       },
       biografia: {
         type: Sequelize.STRING
-      },
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('profesores');
+    await queryInterface.dropTable('ProductosServicios');
   }
 };

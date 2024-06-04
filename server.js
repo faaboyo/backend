@@ -2,16 +2,15 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const config = require("config");
-const colors = require("colors");
 const bodyParser = require("body-parser");
+const { sequelize } = require('./models');
 
 class Server {
   constructor() {
     this.init();
     this.app = express();
-    this.port = process.env.PORT;
-    this.host = process.env.HOST;
+    this.port = process.env.PORT || 3001;
+    this.host = process.env.HOST || 'localhost';
     this.middlewares();
     this.routes();
     this.errorHandler();
@@ -19,6 +18,13 @@ class Server {
 
   init() {
     dotenv.config();
+    sequelize.authenticate()
+      .then(() => {
+        console.log('Connection has been established successfully.');
+      })
+      .catch(err => {
+        console.error('Unable to connect to the database:', err);
+      });
   }
 
   middlewares() {
@@ -27,29 +33,40 @@ class Server {
     };
 
     this.app.use(cors(corsOptions));
-    this.app.use(bodyParser.urlencoded({extended: true}))
-    this.app.use(bodyParser.json())
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json());
     this.app.use(morgan("combined"));
-    
   }
 
   routes() {
     this.app.use("/api", require("./routes"));
+    this.app.get("/", (req, res) => {
+      res.send("Servidor en funcionamiento");
+    });
   }
 
   errorHandler() {
-    this.app.use(require("./helpers/error-handler"));
+    // Manejo de errores personalizados
+    this.app.use((err, req, res, next) => {
+      console.error(err.stack);
+      res.status(500).send('Something broke!');
+    });
+
+    // Manejo de errores 404
+    this.app.use((req, res, next) => {
+      res.status(404).send("Sorry, that route doesn't exist.");
+    });
   }
 
   listen() {
     const server = this.app.listen(this.port, this.host, (err) => {
       if (err) {
-        console.log("entra para cerrar el proces")
-        console.log(err);
+        console.log("Error al iniciar el servidor:");
+        console.error(err);
         process.exit(1);
       }
 
-      console.log(`Server is running on ${this.host}:${server.address().port}`);
+      console.log(`El servidor está en ejecución en ${this.host}:${server.address().port}`);
     });
   }
 }

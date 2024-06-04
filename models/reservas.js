@@ -1,10 +1,8 @@
 "use strict";
 
-const { QueryTypes } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  const profesor = sequelize.define(
-    "profesor",
+  const Reservas = sequelize.define(
+    "Reservas",
     {
       id: {
         allowNull: false,
@@ -12,36 +10,35 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      nombre: {
+      titulo: {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      URL: {
         allowNull: false,
         type: DataTypes.TEXT,
       },
     },
     {
       timestamps: false,
-      tableName: "profesores",
+      tableName: "reservas",
     }
   );
 
-  profesor.getProfesores = async (params) => {
-    
-    const query = ``;
+  Reservas.getProductosServicios = async (params) => {
+    const query = ``; // Aquí deberías definir la consulta SQL para obtener las secciones
     return await sequelize.query(query, {
       type: sequelize.QueryTypes.SELECT,
     });
   };
 
-  profesor.associate = function (models) {
-    // profesor.hasMany(models.materias, {
-    //   foreignKey: "fk_materia",
-    //   as: "materias",
-    // });
+  Reservas.associate = function (models) {
+    Reservas.belongsTo(models.ProductosServicios, {
+      foreignKey: "fk_productos_servicios",
+      as: "productos_servicios",
+    });
   };
 
-  return profesor;
+  return Reservas;
 };
 
