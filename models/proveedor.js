@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const Proveedores = sequelize.define(
-    "Proveedores",
+  const proveedor = sequelize.define(
+    "proveedor",
     {
       id: {
         allowNull: false,
@@ -14,19 +14,23 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      biografia: {
+      descripcion: { // Cambiado de lastName a descripcion
         allowNull: false,
         type: DataTypes.TEXT,
+      },
+      precio: { // Cambiado de email a precio
+        allowNull: false,
+        type: DataTypes.FLOAT,
       },
     },
     {
       timestamps: false,
-      tableName: "proveedores",
+      tableName: "proveedor",
     }
   );
 
 
-  return Proveedores;
+  return proveedor;
 };
 
 

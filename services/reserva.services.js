@@ -1,6 +1,6 @@
 "use strict";
 
-const Reserva = require("../models").reserva;
+const { reserva: Reserva } = require("../models");
 
 class ReservaService {
   static async getReservas(params) {
@@ -11,7 +11,7 @@ class ReservaService {
     return await Reserva.findOne({ where: { id } });
   }
 
-  static async createReserva(Reserva) {
+  static async createReserva(reserva) {
     return await Reserva.create({
       nombre: reserva.nombre,
       descripcion: reserva.descripcion,
@@ -19,8 +19,8 @@ class ReservaService {
     });
   }
 
-  static async updateReserva(Reserva) {
-    const instance = await this.getReserva(Reserva.id);
+  static async updateReserva(reserva) {
+    const instance = await this.getReserva(reserva.id);
 
     if (!instance) return null;
 

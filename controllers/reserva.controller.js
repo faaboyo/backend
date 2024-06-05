@@ -17,7 +17,7 @@ const getReserva = asyncHandler(async (req, res) => {
 const createReserva = asyncHandler(async (req, res) => {
   const payload = req.body;
   
-  const reserva = await ReservasService.createReserva(payload);
+  const reserva = await ReservaService.createReserva(payload);
   return http.response201(res, reserva);
 });
 
@@ -32,7 +32,7 @@ const updateReserva = asyncHandler(async (req, res) => {
 const deleteReserva = asyncHandler(async (req, res) => {
   const id = req.params.id;
 
-  await ReservasService.deleteReserva(id);
+  await ReservaService.deleteReserva(id);
   return http.response200(res);
 });
 

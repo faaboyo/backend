@@ -1,7 +1,6 @@
 "use strict";
 
-const Evento = require("../models").evento;
-
+const { evento: Evento } = require("../models");
 
 class EventoService {
   static async getEventos(params) {
@@ -41,6 +40,8 @@ class EventoService {
 
     await instance.destroy();
   }
+
 }
 
 module.exports = EventoService;
+

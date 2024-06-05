@@ -1,10 +1,10 @@
-const ProveedorService = require("../services/Proveedor.services");
+const ProveedorService = require("../services/proveedor.services");
 const asyncHandler = require("../middlewares/async-handler");
 const http = require("../helpers/http");
 
 const getProveedores = asyncHandler(async (req, res) => {
   const params = req.query;
-  const proveedores = await ProveedoresService.getProveedores(params);
+  const proveedores = await ProveedorService.getProveedores(params);
   return http.response200(res, proveedores);
 });
 

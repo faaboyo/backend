@@ -1,7 +1,7 @@
 
 "use strict";
 
-const Proveedor = require("../models").proveedor;
+const { proveedor: Proveedor } = require("../models");
 
 class ProveedorService {
   static async getProveedores(params) {
@@ -14,9 +14,9 @@ class ProveedorService {
 
   static async createProveedor(proveedor) {
     return await Proveedor.create({
-      nombre: Proveedor.nombre,
-      descripcion: Proveedor.descripcion,
-      precio: Proveedor.precio
+      nombre: proveedor.nombre,
+      descripcion: proveedor.descripcion,
+      precio: proveedor.precio
     });
   }
 
@@ -26,9 +26,9 @@ class ProveedorService {
     if (!instance) return null;
 
     return instance.update({
-      nombre: Proveedor.nombre,
-      descripcion: Proveedor.descripcion,
-      precio: Proveedor.precio
+      nombre: proveedor.nombre,
+      descripcion: proveedor.descripcion,
+      precio: proveedor.precio
     });
   }
 
