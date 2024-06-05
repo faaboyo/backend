@@ -1,4 +1,4 @@
-const Profesor = require("../models").index;
+const Index = require("../models").index;
 
 class IndexService {
   static async getIndexes(params) {
@@ -12,7 +12,8 @@ class IndexService {
   static async createIndex(index) {
     return await Index.create({
       nombre: index.nombre,
-      biografia: index.biografia,
+      descripcion: index.descripcion,
+      precio: index.precio
     });
   }
 
@@ -23,7 +24,8 @@ class IndexService {
 
     return instance.update({
       nombre: index.nombre,
-      biografia: index.biografia
+      descripcion: index.descripcion,
+      precio: index.precio
     });
   }
 

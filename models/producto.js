@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const Reservas = sequelize.define(
-    "Reservas",
+  const producto = sequelize.define(
+  "producto",
     {
       id: {
         allowNull: false,
@@ -10,23 +10,26 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      titulo: {
+      nombre: { // Cambiado de firstName a nombre
         allowNull: false,
         type: DataTypes.STRING(50),
       },
-      URL: {
+      descripcion: { // Cambiado de lastName a descripcion
         allowNull: false,
         type: DataTypes.TEXT,
       },
+      precio: { // Cambiado de email a precio
+        allowNull: false,
+        type: DataTypes.FLOAT,
+      },
     },
     {
-      timestamps: false,
-      tableName: "reservas",
+      timestamps: true,
+      tableName: "producto",
     }
   );
 
 
 
-  return Reservas;
+  return producto;
 };
-

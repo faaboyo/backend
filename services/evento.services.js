@@ -41,9 +41,6 @@ class EventoService {
 
     await instance.destroy();
   }
-
- 
-
 }
-console.log(EventoService);
+
 module.exports = EventoService;

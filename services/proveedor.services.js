@@ -1,18 +1,22 @@
-const Proveedores = require("../models").proveedores;
 
-class ProveedoresService {
+"use strict";
+
+const Proveedor = require("../models").proveedor;
+
+class ProveedorService {
   static async getProveedores(params) {
-    return await Proveedores.findAll(params);
+    return await Proveedor.findAll(params);
   }
 
   static async getProveedor(id) {
-    return await Proveedores.findOne({ where: { id } });
+    return await Proveedor.findOne({ where: { id } });
   }
 
   static async createProveedor(proveedor) {
-    return await Proveedores.create({
-      nombre: proveedor.nombre,
-      biografia: proveedor.biografia,
+    return await Proveedor.create({
+      nombre: Proveedor.nombre,
+      descripcion: Proveedor.descripcion,
+      precio: Proveedor.precio
     });
   }
 
@@ -22,8 +26,9 @@ class ProveedoresService {
     if (!instance) return null;
 
     return instance.update({
-      nombre: proveedor.nombre,
-      biografia: proveedor.biografia
+      nombre: Proveedor.nombre,
+      descripcion: Proveedor.descripcion,
+      precio: Proveedor.precio
     });
   }
 
@@ -36,4 +41,4 @@ class ProveedoresService {
   }
 }
 
-module.exports = ProveedoresService;
+module.exports = ProveedorService;

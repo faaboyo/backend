@@ -1,7 +1,8 @@
+"use strict";
 
 module.exports = (sequelize, DataTypes) => {
-  const productoservicio = sequelize.define(
-  "productoservicio",
+  const Reservas = sequelize.define(
+    "Reservas",
     {
       id: {
         allowNull: false,
@@ -23,12 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      timestamps: true,
-      tableName: "productoservicio",
+      timestamps: false,
+      tableName: "reserva",
     }
   );
 
-
-
-  return productoservicio;
+  return Reservas;
 };
+

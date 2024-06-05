@@ -12,7 +12,6 @@ class UserService {
   }
 
   static async createUser(user) {
-    console.log(user)
     return await User.create({
       firstName: user.firstName,
       lastName: user.lastName,
