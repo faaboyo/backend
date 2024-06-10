@@ -20,23 +20,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
     },
     {
       timestamps: false,
-      tableName: "usuarios",
+      tableName: "user",
     }
   );
 
-
-
   return user;
 };
-
-
-
-
-
-
-

@@ -22,7 +22,10 @@ class ProductoService {
   static async updateProducto(producto) {
     const instance = await this.getProducto(producto.id);
 
+    console.log("producto en servicio", producto)
     if (!instance) return null;
+
+    
 
     return instance.update({
       nombre: producto.nombre,

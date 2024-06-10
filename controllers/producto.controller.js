@@ -22,6 +22,7 @@ const createProducto = asyncHandler(async (req, res) => {
 
 const updateProducto = asyncHandler(async (req, res) => {
   const payload = req.body;
+  console.log(payload)
   payload.id = req.params.id;
   const producto = await ProductoService.updateProducto(payload);
   return http.response200(res, producto);
